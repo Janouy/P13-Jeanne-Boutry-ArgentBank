@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function User() {
+function Profile() {
 	return (
 		<main className="mainAccount bg-dark">
 			<div className="header">
@@ -47,4 +47,4 @@ function User() {
 	);
 }
 
-export default User;
+export default Profile;
