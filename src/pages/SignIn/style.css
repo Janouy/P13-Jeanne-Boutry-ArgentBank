@@ -49,3 +49,8 @@
 	color: #fff;
 	cursor: pointer;
 }
+.errorMessage {
+	margin-top: 0.5vh;
+	font-weight: 800;
+	color: red;
+}

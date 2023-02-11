@@ -1,0 +1,14 @@
+.error {
+	font-size: 5vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+}
+
+.link {
+	margin-top: 2vh;
+	font-size: 3vh;
+	text-decoration: none;
+}

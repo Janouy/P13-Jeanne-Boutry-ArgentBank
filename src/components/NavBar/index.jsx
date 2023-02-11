@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setLogout } from "../../features/authSlice";
-import { selectToken } from "../../selectors";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/authSlice";
 import "./style.css";
 import ImgFileLog from "../../assets/argentBankLogo.png";
 
 function NavBar() {
-	const token = useSelector(selectToken);
+	const token = localStorage.getItem("token");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const signOut = () => {
-		dispatch(setLogout(null));
+		dispatch(logout());
+		localStorage.removeItem("token");
 		navigate("/");
 	};
 	return (

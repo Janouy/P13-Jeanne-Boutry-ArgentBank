@@ -14,14 +14,16 @@ export const authSlice = createSlice({
 		setResponseCode: (state, action) => {
 			state.code = action.payload;
 		},
-		setLogout: (state, action) => {
-			state.token = null;
-		},
-		setUser: (state, action) => {
+		login: (state, action) => {
 			state.user = action.payload;
+		},
+		logout: (state, action) => {
+			state.token = null;
+			state.user = null;
+			state.code = null;
 		},
 	},
 });
 
-export const { setToken, setLogout, setResponseCode } = authSlice.actions;
+export const { setToken, setResponseCode, login, logout } = authSlice.actions;
 export default authSlice.reducer;

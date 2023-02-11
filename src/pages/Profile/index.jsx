@@ -1,14 +1,14 @@
 import React from "react";
 import "./style.css";
 
-function Profile() {
+function Profile({ user }) {
 	return (
 		<main className="mainAccount bg-dark">
 			<div className="header">
 				<h1>
 					Welcome back
 					<br />
-					Tony Jarvis!
+					{user?.firstName} {user?.lastName} !
 				</h1>
 				<button className="edit-button">Edit Name</button>
 			</div>

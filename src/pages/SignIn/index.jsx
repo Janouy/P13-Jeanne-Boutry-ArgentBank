@@ -5,33 +5,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { setResponseCode } from "../../features/authSlice";
 import { selectCode, selectToken } from "../../selectors";
 import { getToken } from "../../services/Auth";
+const serverError = 500;
+const badRequest = 400;
 
 function SignIn() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const [errorMessage, setErrorMessage] = useState("");
 	const token = useSelector(selectToken);
 	const code = useSelector(selectCode);
-	const [input, setInput] = useState({
-		email: "",
-		password: "",
-	});
-
-	const handleChange = (event) => {
-		setInput({ ...input, [event.target.name]: event.target.value });
-	};
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const sendForm = (event) => {
+		dispatch(setResponseCode(null));
 		event.preventDefault();
 		const asyncProcess = async () => {
-			await dispatch(getToken(input));
+			await dispatch(getToken({ email: email, password: password }));
 		};
 		asyncProcess();
 	};
 	useEffect(() => {
-		if (code === 400) {
-			alert("Invalid Fields");
-		} else if (code === 500) {
-			alert("Internal Server Error");
+		if (code === badRequest) {
+			setErrorMessage("Invalid Fields");
+		} else if (code === serverError) {
+			setErrorMessage("Internal Server Error");
 		} else if (token !== null) {
 			navigate("/profile");
 			dispatch(setResponseCode(null));
@@ -45,11 +43,21 @@ function SignIn() {
 				<form onSubmit={sendForm}>
 					<div className="input-wrapper">
 						<label htmlFor="userEmail">UserEmail</label>
-						<input type="text" id="userEmail" name="email" onChange={handleChange} />
+						<input
+							type="text"
+							id="userEmail"
+							name="email"
+							onChange={(event) => setEmail(event.target.value)}
+						/>
 					</div>
 					<div className="input-wrapper">
 						<label htmlFor="password">Password</label>
-						<input type="password" id="password" name="password" onChange={handleChange} />
+						<input
+							type="password"
+							id="password"
+							name="password"
+							onChange={(event) => setPassword(event.target.value)}
+						/>
 					</div>
 					<div className="input-remember">
 						<input type="checkbox" id="remember-me" />
@@ -57,6 +65,7 @@ function SignIn() {
 					</div>
 					<button className="sign-in-button">Sign In</button>
 				</form>
+				<div className="errorMessage">{errorMessage}</div>
 			</section>
 		</div>
 	);
