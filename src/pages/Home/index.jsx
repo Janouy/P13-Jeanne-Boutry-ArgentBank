@@ -6,7 +6,7 @@ import ImgFileMoney from "../../assets/icon-money.png";
 
 function Home() {
 	return (
-		<div>
+		<div className="home-page">
 			<div className="hero">
 				<section className="hero-content">
 					<h2 className="sr-only">Promoted Content</h2>

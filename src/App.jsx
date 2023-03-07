@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -10,12 +10,15 @@ import { getUser } from "./services/User";
 import { selectUser, selectToken } from "./selectors";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Modale from "./components/Modale";
 import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
 	const token = useSelector(selectToken) || localStorage.getItem("token");
+	const [isModaleOpened, setIsModaleOpened] = useState(false);
+	const [notifMessage, setNotifMessage] = useState();
 
 	useEffect(() => {
 		if (token) dispatch(getUser());
@@ -23,12 +26,28 @@ function App() {
 
 	return (
 		<div className="App">
+			<Modale
+				isModaleOpened={isModaleOpened}
+				notifMessage={notifMessage}
+				setIsModaleOpened={setIsModaleOpened}
+				token={token}
+			/>
 			<NavBar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/sign-in" element={<SignIn />} />
-				<Route element={<ProtectedRoutes />}>
-					<Route path="/profile" element={<Profile user={user} />} />
+				<Route path="/login" element={<SignIn />} />
+				<Route element={<ProtectedRoutes token={token} user={user} />}>
+					<Route
+						path="/profile"
+						element={
+							<Profile
+								user={user}
+								setIsModaleOpened={setIsModaleOpened}
+								setNotifMessage={setNotifMessage}
+							/>
+						}
+						exact
+					/>
 				</Route>
 				<Route path="/*" element={<Error />} />
 			</Routes>

@@ -1,5 +1,5 @@
 import axios from "../axiosInstance";
-import { setToken, setResponseCode } from "../../features/authSlice";
+import { setToken, setMessage } from "../../features/authSlice";
 
 export const getToken = (input) => {
 	return (dispatch) =>
@@ -10,12 +10,10 @@ export const getToken = (input) => {
 				localStorage.setItem("token", response.data.body.token);
 			})
 			.catch(function (error) {
-				if (error.response?.status === 400) {
-					dispatch(setResponseCode(error.response.status));
-					localStorage.removeItem("token");
-				} else if (error) {
-					dispatch(setResponseCode(500));
-					localStorage.removeItem("token");
-				}
+				dispatch(setMessage("An error occurs, please try again"));
+				setTimeout(() => {
+					dispatch(setMessage(null));
+				}, 3000);
+				localStorage.removeItem("token");
 			});
 };

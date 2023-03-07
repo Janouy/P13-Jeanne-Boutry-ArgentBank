@@ -2,39 +2,31 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setResponseCode } from "../../features/authSlice";
-import { selectCode, selectToken } from "../../selectors";
+import { selectMessage, selectToken } from "../../selectors";
 import { getToken } from "../../services/Auth";
-const serverError = 500;
-const badRequest = 400;
 
 function SignIn() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [errorMessage, setErrorMessage] = useState("");
 	const token = useSelector(selectToken);
-	const code = useSelector(selectCode);
+	const message = useSelector(selectMessage);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const sendForm = (event) => {
-		dispatch(setResponseCode(null));
+		setErrorMessage("");
 		event.preventDefault();
-		const asyncProcess = async () => {
-			await dispatch(getToken({ email: email, password: password }));
-		};
-		asyncProcess();
+		dispatch(getToken({ email: email, password: password }));
 	};
 	useEffect(() => {
-		if (code === badRequest) {
-			setErrorMessage("Invalid Fields");
-		} else if (code === serverError) {
-			setErrorMessage("Internal Server Error");
+		if (message !== null) {
+			setErrorMessage(message);
 		} else if (token !== null) {
 			navigate("/profile");
-			dispatch(setResponseCode(null));
 		}
-	}, [dispatch, navigate, code, token]);
+	}, [dispatch, navigate, message, token]);
+
 	return (
 		<div className="main bg-dark">
 			<section className="sign-in-content">
@@ -65,8 +57,8 @@ function SignIn() {
 					</div>
 					<button className="sign-in-button">Sign In</button>
 				</form>
-				<div className="errorMessage">{errorMessage}</div>
 			</section>
+			{errorMessage ? <div className="errorMessage">{errorMessage}</div> : null}
 		</div>
 	);
 }

@@ -1,11 +1,12 @@
 .mainAccount {
-	flex: 1;
-	height: 100vh;
+	min-height: 100vh;
+	border: 2px solid;
+	z-index: -1;
 }
 
 .header {
 	color: #fff;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	padding: 0.4rem;
 }
 .edit-button {
@@ -62,11 +63,34 @@
 	background-color: #00bc77;
 	color: #fff;
 }
+.updateInfos-rapper {
+	font-weight: bold;
+	margin-top: 2%;
+	font-size: 3vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.updateInfos-name {
+	margin-top: -10px;
+	margin-bottom: 1vh;
+}
+.updateForm {
+	font-size: 2vh;
+}
+.update-button {
+	border-color: #00bc77;
+	background-color: #00bc77;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px;
+}
 
 @media (min-width: 720px) {
 	.mainAccount {
 		flex: 1;
-		height: 84.5vh;
+		min-height: 84.5vh;
 	}
 	.account {
 		flex-direction: row;

@@ -1,0 +1,49 @@
+.modale {
+	display: none;
+}
+.openedModale {
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	z-index: 2;
+	background-color: rgba(96, 96, 96, 0.8);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.greenMessage {
+	font-size: 36px;
+	font-weight: bold;
+	color: #00995e;
+	-webkit-text-stroke: 0.5px black;
+}
+.redMessage {
+	font-size: 36px;
+	font-weight: bold;
+	color: #ed2917;
+}
+
+@keyframes loaderAnimation {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.loader {
+	animation: loaderAnimation 3s;
+	animation-fill-mode: forwards;
+}
+.modaleCloseButton {
+	width: 20vh;
+	height: 5vh;
+	border-radius: 10px;
+	background-color: #0000;
+	color: white;
+	font-size: 24px;
+	cursor: pointer;
+	margin-top: 5vh;
+}

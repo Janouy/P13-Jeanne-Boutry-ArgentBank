@@ -1,5 +1,6 @@
 .main {
 	display: flex;
+	flex-direction: column;
 	height: 84.5vh;
 }
 .bg-dark {
@@ -49,8 +50,22 @@
 	color: #fff;
 	cursor: pointer;
 }
+@keyframes messageAnimation {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
 .errorMessage {
 	margin-top: 0.5vh;
 	font-weight: 800;
 	color: red;
+	animation: messageAnimation 8s;
+	animation-fill-mode: forwards;
 }
