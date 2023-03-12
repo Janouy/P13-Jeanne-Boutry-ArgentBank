@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../services/User";
 import { selectMessage } from "../../selectors";
@@ -27,6 +28,12 @@ function Profile({ user, setIsModaleOpened, setNotifMessage }) {
 		setIsModaleOpened(true);
 	};
 
+	if (!user)
+		return (
+			<div className="logAgainMessage">
+				You have been logged out, please &nbsp;<Link to={"/login"}> Login</Link>&nbsp; again
+			</div>
+		);
 	return (
 		<main className="mainAccount bg-dark">
 			<div className="header">

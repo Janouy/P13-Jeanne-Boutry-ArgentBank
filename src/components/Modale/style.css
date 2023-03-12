@@ -12,14 +12,18 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.innerModale {
+	background-color: #ffff;
+	padding: 3vh;
+}
 .greenMessage {
-	font-size: 36px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #00995e;
-	-webkit-text-stroke: 0.5px black;
 }
 .redMessage {
-	font-size: 36px;
+	font-size: 24px;
 	font-weight: bold;
 	color: #ed2917;
 }
@@ -30,6 +34,7 @@
 	}
 	100% {
 		opacity: 0;
+		width: 0%;
 	}
 }
 
@@ -38,12 +43,12 @@
 	animation-fill-mode: forwards;
 }
 .modaleCloseButton {
-	width: 20vh;
-	height: 5vh;
+	width: 10vh;
+	height: 3vh;
 	border-radius: 10px;
-	background-color: #0000;
+	background-color: #000;
 	color: white;
-	font-size: 24px;
+	font-size: 16px;
 	cursor: pointer;
 	margin-top: 5vh;
 }

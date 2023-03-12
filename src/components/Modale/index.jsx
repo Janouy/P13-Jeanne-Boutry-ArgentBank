@@ -18,24 +18,24 @@ function Modale({ notifMessage, isModaleOpened, setIsModaleOpened, token }) {
 			) : (
 				<>
 					{token ? (
-						<>
+						<div className="innerModale">
 							<div className="greenMessage">{notifMessage}</div>
 							<button className="modaleCloseButton" onClick={closeModale}>
 								OK
 							</button>
-						</>
+						</div>
 					) : (
 						<div className="redMessage">You have been disconnected</div>
 					)}
 				</>
 			)}
 			{!token ? (
-				<>
+				<div className="innerModale">
 					<div className="redMessage">You have been disconnected</div>
 					<button className="modaleCloseButton" onClick={closeModale}>
 						OK
 					</button>
-				</>
+				</div>
 			) : null}
 		</div>
 	);

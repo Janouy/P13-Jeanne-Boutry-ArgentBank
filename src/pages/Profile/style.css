@@ -87,8 +87,19 @@
 	padding: 10px;
 }
 
+.logAgainMessage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+}
+
 @media (min-width: 720px) {
 	.mainAccount {
+		flex: 1;
+		min-height: 84.5vh;
+	}
+	.logAgainMessage {
 		flex: 1;
 		min-height: 84.5vh;
 	}

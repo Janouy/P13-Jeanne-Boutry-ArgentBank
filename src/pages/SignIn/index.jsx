@@ -22,7 +22,7 @@ function SignIn() {
 	useEffect(() => {
 		if (message !== null) {
 			setErrorMessage(message);
-		} else if (token !== null) {
+		} else if (token) {
 			navigate("/profile");
 		}
 	}, [dispatch, navigate, message, token]);

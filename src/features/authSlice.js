@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// creating a redux state for user login
 export const authSlice = createSlice({
 	name: "auth",
 	initialState: {
@@ -14,7 +15,7 @@ export const authSlice = createSlice({
 		login: (state, action) => {
 			state.user = action.payload;
 		},
-		logout: (state, action) => {
+		logout: (state) => {
 			state.token = null;
 			state.user = null;
 			state.message = null;

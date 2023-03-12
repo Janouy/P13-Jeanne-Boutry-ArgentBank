@@ -11,9 +11,10 @@ function NavBar() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const user = useSelector(selectUser);
+
 	const signOut = () => {
 		dispatch(logout());
-		localStorage.removeItem("token");
+		sessionStorage.removeItem("token");
 		navigate("/");
 	};
 	return (

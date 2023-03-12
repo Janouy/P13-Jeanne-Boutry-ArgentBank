@@ -16,10 +16,11 @@ import ProtectedRoutes from "./ProtectedRoutes";
 function App() {
 	const dispatch = useDispatch();
 	const user = useSelector(selectUser);
-	const token = useSelector(selectToken) || localStorage.getItem("token");
+	const token = useSelector(selectToken) || sessionStorage.getItem("token");
 	const [isModaleOpened, setIsModaleOpened] = useState(false);
 	const [notifMessage, setNotifMessage] = useState();
 
+	// Verify token when the application is displayed
 	useEffect(() => {
 		if (token) dispatch(getUser());
 	}, [dispatch, token]);
@@ -36,7 +37,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<SignIn />} />
-				<Route element={<ProtectedRoutes token={token} user={user} />}>
+				<Route element={<ProtectedRoutes token={token} />}>
 					<Route
 						path="/profile"
 						element={

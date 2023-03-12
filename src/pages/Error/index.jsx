@@ -5,9 +5,9 @@ import "./style.css";
 function Error() {
 	return (
 		<div className="error">
-			<div>Désolé, cette page n'existe pas</div>
+			<div>Sorry this page does not exist</div>
 			<Link className="link" to="/">
-				Retour à la page d'accueil
+				Return to home page
 			</Link>
 		</div>
 	);
