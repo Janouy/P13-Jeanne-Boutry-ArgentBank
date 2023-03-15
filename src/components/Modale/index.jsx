@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
 import { useDispatch } from "react-redux";
 import { setMessage } from "../../features/authSlice";
@@ -11,6 +11,9 @@ function Modale({ notifMessage, isModaleOpened, setIsModaleOpened, token }) {
 		dispatch(setMessage(null));
 	};
 
+	useEffect(() => {
+		isModaleOpened ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset");
+	}, [isModaleOpened]);
 	return (
 		<div className={isModaleOpened ? "openedModale" : "modale"}>
 			{!notifMessage ? (

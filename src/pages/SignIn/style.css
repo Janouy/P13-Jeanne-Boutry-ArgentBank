@@ -54,18 +54,15 @@
 	0% {
 		opacity: 0;
 	}
-	50% {
-		opacity: 1;
-	}
 
 	100% {
-		opacity: 0;
+		opacity: 1;
 	}
 }
 .errorMessage {
 	margin-top: 0.5vh;
 	font-weight: 800;
 	color: red;
-	animation: messageAnimation 8s;
+	animation: messageAnimation 1s;
 	animation-fill-mode: forwards;
 }
