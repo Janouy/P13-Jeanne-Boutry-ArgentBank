@@ -14,7 +14,7 @@ export const authSlice = createSlice({
 			state.token = action.payload;
 		},
 		// Connected user's  informations
-		login: (state, action) => {
+		setUser: (state, action) => {
 			state.user = action.payload;
 		},
 		// Erase connected user's informations
@@ -30,5 +30,5 @@ export const authSlice = createSlice({
 	},
 });
 
-export const { setToken, login, logout, setMessage } = authSlice.actions;
+export const { setToken, setUser, logout, setMessage } = authSlice.actions;
 export default authSlice.reducer;

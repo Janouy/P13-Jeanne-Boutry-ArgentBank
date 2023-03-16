@@ -1,5 +1,5 @@
 import axios from "../axiosInstance";
-import { login, setMessage, logout } from "../../features/authSlice";
+import { setUser, setMessage, logout } from "../../features/authSlice";
 const { REACT_APP_API_URL } = process.env;
 const { REACT_APP_STATUS_BAD_REQUEST } = process.env;
 
@@ -11,7 +11,7 @@ export const getUser = () => {
 				headers: { Authorization: "Bearer " + sessionStorage.getItem("token") },
 			})
 			.then((response) => {
-				dispatch(login(response.data.body));
+				dispatch(setUser(response.data.body));
 			})
 			.catch(function (error) {
 				if (error.response?.status === REACT_APP_STATUS_BAD_REQUEST) {
@@ -33,7 +33,7 @@ export const updateUser = (input) => {
 			})
 			.then((response) => {
 				dispatch(setMessage(response.data.message));
-				dispatch(login(response.data.body));
+				dispatch(setUser(response.data.body));
 			})
 			.catch(function (error) {
 				if (error) {
